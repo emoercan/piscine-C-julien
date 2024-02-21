@@ -1,0 +1,33 @@
+cd shell00		// navigue vers le répertoire shell00
+mkdir ex09		// créée le dossier ex09
+cd ex09			// navigue vers le répertoire ex09
+
+vim ft_magic		// crée le fichier ft_magic
+			// ce fichier magique contiendra les règles pour le reconnaissance de types personnalisés de fichiers
+i
+41	string 42	42 file		// indique de rechercher les fichiers de type 42, c'est-à-dire qui contiennent, à partir du 42ème bit (avec un offset de 41 bits),
+					// la chaîne de caractères 42 (string 42)
+					// ce fichier sera de type 42 file
+
+echap
+:wq
+enter
+
+vim test
+i
+space x 42		// pour arriver au 42ème bit
+42			// on insère la chaîne de caractère 42
+echap
+:wq
+enter
+
+file -m ft_magic test		// file : détermine le type d'un fichier
+				// option -m : permet de spécifier le fichier magique (fichier de définition magique) à utiliser
+				// ft_magic : le fichier magique à utiliser
+				// test : le fichier dont on veut déterminer le type
+
+				// le résultat devrait être : test: 42 file
+
+rm test
+
+ASTUCE : man file

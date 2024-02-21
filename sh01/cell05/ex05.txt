@@ -1,0 +1,37 @@
+! ATTENTION ! Ne fonctionne pas correctement sur cygwin : faire cet exercice sur FreeBSD (voir freeBSD.txt)
+
+cd shell01
+mkdir ex05
+cd ex05
+
+touch \"\\\?\$\*\'MaRViN\'\*\$\\\"	// on échappe les caractères spéciaux avec \ (avant chaque caractère spécial) pour qu'il soit interprété de façon littérale
+					// sinon : 
+					
+					// les deux guillements simples ' seront interprétées comme délimitation d'une chaîne de caractères littérale
+					// le texte entre les deux guillemets simples sera interprété tel quel, la substitution des variables n'aura pas lieu
+					
+					// les deux doubles guillements " seront interprétées comme délimitation d'une chaîne de caractères
+					// où la substitution des variables aura lieu
+					
+					// l'antislash \ sera interprété comme un caractère d'échappement : il échappera donc le caractère spécial suivant
+					
+					// le point d'interrogation ? sera interprété come un caractère de substitution (globbing) : il correspondra à n'importe quel caractère 					// unique dans le nom d'un fichier ou d'un répertoire lors de l'exécution d'une commande
+					
+					// l'astérisque * sera interprétée comme un caractère de substitution (globbing) : il correspondra à 0, 1 ou plusieurs caractères dans le 					// nom d'un fichier ou d'un répertoire lors de l'exécution d'une commande
+
+					// le dollar $ sera interprété comme le symbole de référencement d'une variable (les caractères suivants formeront le nom de cette 						// variable
+
+printf '42' > \"\\\?\$\*\'MaRViN\'\*\$\\\"	// on utilise printf (au lieu de echo ou vim par exemple) pour ne pas insérer automatiquement de saut à la ligne en fin de fichier (on veut que le fichier contienne UNIQUEMENT "42" et RIEN D'AUTRE
+
+cat \"\\\?\$\*\'MaRViN\'\*\$\\\"		// résultat : 42 (attention, pas de saut à la ligne, bien regarder au début de la ligne affichée après cette commande
+						// 42admin@admin:~ $
+
+chmod 614 \"\\\?\$\*\'MaRViN\'\*\$\\\"		// pour -rw---xr--
+
+ls -lRa *MaRV* | cat -e				// liste les fichiers et répertoires à partir du répertoire courant
+						// option -l : long listing format (liste détaillée)
+						// option -R : recursive (liste les sous-répertoires récursivement)
+						// option -a : all (liste aussi les fichiers cachés, commençant par un point .)
+
+						// on écrit *MaRV* pour indiquer qu'on cherche un fichier contenant MaRV (commençant et se terminant par n'importe quelle suite de caractères)
+

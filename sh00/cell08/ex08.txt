@@ -1,0 +1,39 @@
+cd shell00		// navigue vers le répertoire shell00
+mkdir ex08		// créée le dossier ex08
+cd ex08			// navigue vers le répertoire ex08
+
+touch test.txt		// crée le fichier test.txt
+touch test.txt~		// crée le fichier test.txt~
+touch a.a		// crée le fichier a.a (pour tester la commande, car on ne peut pas créer de fichier commençant et se terminant par #)
+mkdir testdir		// crée un sous-répertoire
+ls			// affiche les fichiers et répertoires du répertoire courant
+cd testdir		// on navigue vers ce sous-répertoire
+touch test2.txt
+touch test2.txt~
+touch a2.2a
+ls
+cd ..
+
+find . -name "*~" -print -delete -or -name "a*a" -print -delete // find - search for files in a dorectory hierarchy ; cherche des fichiers à partir d'un répertoire  										// (dans le répertoire courant et ses sous-répertoires)
+								// on cherche à partir du répertoire courant (.)
+							// les fichiers dont le nom se termine par ~ (* : wildcard) ; donc *~ = n'importe quelle suite de caractères puis ~
+							// on affiche à l'écran les fichiers correspondants (avec l'option -print), puis on les supprime (avec -delete)
+							// ou (option -or)
+							// les fichiers dont le nom commence et se termine par a (* : wildcard) ; donc a*a = a, n'importe quelle suite de  								// caractères puis a
+							// on affiche à l'écran les fichiers correspondants (avec l'option -print), puis on les supprime (avec -delete)
+
+find . \( -name "*~" -or -name "a*a" \) -print -delete	// on peut raccourcir cette commande comme ceci (en échappant la parenthèse ouvrante et la parenthèse fermante
+							// avec un antislash devant chacune d'elle
+
+ls		// on vérifie que les fichiers se terminant par ~ ou commençant et se terminant par # ont bien été supprimés dans le répertoire (mais pas le fichier test.txt)
+rm testdir
+
+cd testdir
+ls		// on vérifie que les fichiers se terminant par ~ ou commençant et se terminant par # ont bien été supprimés dans le sous-répertoire (mais pas le fichier 			// test2.txt)
+rm test2.txt
+
+cd ..
+
+echo "find . \( -name "*~" -or -name "#*#" \) -print -delete" > clean // on écrit la commande dans le fichier clean
+
+ASTUCE : man find

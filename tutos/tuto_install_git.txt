@@ -1,0 +1,25 @@
+https://git-scm.com/download/win
+64-bit Git for Windows Setup
+Cliquer sur Git-2.43.0-64-bit.exe (par exemple)
+Next x4
+Use Vim (the ubiquitous text editor) as Git's default editor
+Next
+Let Git decide
+Next
+Git from the commande line and also 3rd-party software
+Next
+Use bundled OpenSSH
+Next
+Usethe OpenSSL library
+Next
+Checkout as-is, commit as-is
+Next
+Use MinTTY (the default terminal of MSYS32)
+Fast-forward or merge
+Next
+Git Credential Manager
+Next
+Enable file system caching
+Next
+Install
+Finish
